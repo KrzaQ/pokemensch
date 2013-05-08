@@ -1,7 +1,13 @@
-
 require File.dirname(__FILE__)+'/pokemensch.rb'
 
-eval(File.read('config.rb'))
+config = 'config.rb'
+
+ARGV.each do |a|
+	opt = a.slice(0,3)
+	config = a.sub(/.../,'') if opt == "-c="
+end
+
+eval(File.read(config))
 
 bot = PokeMensch.new(ConfigData)
 
